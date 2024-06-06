@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: email-subscription
+  temporal:
+    namespace: default
+    connection:
+      target: 127.0.0.1:7233
+    workers:
+      - name: send-email-worker
+        task-queue: email_subscription
+    workersAutoDiscovery:
+      packages:
+        - subscription.workflows
+        - subscription.activities

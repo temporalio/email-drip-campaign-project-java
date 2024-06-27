@@ -1,9 +1,10 @@
-package subscription.activities;
 
 import io.temporal.spring.boot.ActivityImpl;
 import org.springframework.stereotype.Component;
 import subscription.model.EmailDetails;
 
+// @@@SNIPSTART email-drip-campaign-java-send-email-activities-implementation
+package subscription.activities;
 @Component
 @ActivityImpl(workers = "send-email-worker")
 public class SendEmailActivitiesImpl implements SendEmailActivities {
@@ -18,3 +19,4 @@ public class SendEmailActivitiesImpl implements SendEmailActivities {
         return "success";
     }
 }
+// @@@SNIPEND

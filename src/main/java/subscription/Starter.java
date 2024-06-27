@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-starter-entry-point-app
 package subscription;
 
 import org.springframework.boot.SpringApplication;
@@ -11,3 +12,4 @@ public class Starter {
         SpringApplication.run(Starter.class, args);
     }
 }
+// @@@SNIPEND

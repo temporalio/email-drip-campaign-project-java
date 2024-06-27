@@ -11,6 +11,7 @@ import io.temporal.workflow.Workflow;
 
 import java.time.Duration;
 
+// @@@SNIPSTART email-drip-campaign-java-send-email-subscription-workflow-implementation
 @WorkflowImpl(workers = "send-email-worker")
 public class SendEmailWorkflowImpl implements SendEmailWorkflow {
 
@@ -41,12 +42,10 @@ public class SendEmailWorkflowImpl implements SendEmailWorkflow {
             }
 
             try {
-
                 activities.sendEmail(emailDetails);
                 Workflow.sleep(Duration.ofSeconds(duration));
             }
             catch (CanceledFailure e) {
-
                 emailDetails.setSubscribed(false);
                 emailDetails.setMessage("Sorry to see you go");
                 CancellationScope sendGoodbye =
@@ -64,3 +63,4 @@ public class SendEmailWorkflowImpl implements SendEmailWorkflow {
         return emailDetails;
     }
 }
+// @@@SNIPEND

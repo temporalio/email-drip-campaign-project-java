@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-tests
 import subscription.activities.SendEmailActivitiesImpl;
 import subscription.workflows.SendEmailWorkflow;
 import subscription.workflows.SendEmailWorkflowImpl;
@@ -81,3 +82,4 @@ public class StarterTest {
         testEnv.close();
     }
 }
+// @@@SNIPEND

@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-subscriber-details-data-class
 package subscription.model;
 
 import lombok.AllArgsConstructor;
@@ -18,3 +19,4 @@ public class EmailDetails {
         count++;
     }
 }
+// @@@SNIPEND

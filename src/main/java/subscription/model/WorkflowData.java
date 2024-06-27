@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-workflow-data-class
 package subscription.model;
 
 import lombok.AllArgsConstructor;
@@ -11,3 +12,4 @@ public class WorkflowData {
 
     private String email;
 }
+// @@@SNIPEND

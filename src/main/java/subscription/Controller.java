@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-headers
 package subscription;
 
 import io.temporal.client.WorkflowClient;
@@ -8,13 +9,17 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import subscription.model.*;
 import subscription.workflows.SendEmailWorkflow;
+// @@@SNIPEND
 
+// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-responder
 @RestController
 public class Controller {
 
     @Autowired
     WorkflowClient client;
 
+// @@@SNIPEND
+// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-subscribe
     @PostMapping(value = "/subscribe", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Message startSubscription(@RequestBody WorkflowData data) {
@@ -29,7 +34,9 @@ public class Controller {
 
         return new Message("Resource created successfully");
     }
+// @@@SNIPEND
 
+// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-details
     @GetMapping(value = "/get_details", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public EmailDetails getQuery(@RequestParam String email) {
@@ -37,7 +44,9 @@ public class Controller {
         SendEmailWorkflow workflow = client.newWorkflowStub(SendEmailWorkflow.class, email);
         return workflow.details();
     }
+// @@@SNIPEND
 
+// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-unsubscribe
     @DeleteMapping(value = "/unsubscribe", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Message endSubscription(@RequestBody WorkflowData data) {
@@ -48,4 +57,5 @@ public class Controller {
 
         return new Message("Requesting cancellation");
     }
+// @@@SNIPEND
 }

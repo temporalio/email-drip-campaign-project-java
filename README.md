@@ -1,7 +1,11 @@
 
 # Simple Java Email Subscription Workflow with Temporal
 
-This project is a Java translation of Temporal's project based tutorial for [an email subscription workflow with Temporal and Python](https://learn.temporal.io/tutorials/python/subscriptions/). Specifically, I recreated Temporal's Python and Flask web application with Java and Spring Boot and rewrote the project tutorial to reflect the process of building this application in Java. This github includes instructions to run the application (see below), the code for the applicaiton, and the written [Java tutorial](/tutorial.md) for how to build this application using the Temporal Java SDK and Spring Boot. 
+This project is a Java translation of Temporal's project-based tutorial for [an email subscription Workflow with Temporal and Python](https://learn.temporal.io/tutorials/python/subscriptions/). 
+It recreates Temporal's Python and Flask "Build an email subscription workflow" tutorial to reflect the process of building this application in Java. 
+This GitHub repo includes instructions for running the application and the Java application code using the Temporal Java SDK and Spring Boot.
+
+Ported to Java by [Sean Sullivan](https://github.com/SeanSullivan3), Summer 2024.
 
 ## Run
 

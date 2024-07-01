@@ -29,16 +29,16 @@ public class SendEmailWorkflowImpl implements SendEmailWorkflow {
     public void run(WorkflowData data) {
 
         int duration = 12;
-        emailDetails.setEmail(data.getEmail());
-        emailDetails.setMessage("Welcome to our Subscription Workflow!");
-        emailDetails.setSubscribed(true);
-        emailDetails.setCount(0);
+        emailDetails.email = data.email;
+        emailDetails.message = "Welcome to our Subscription Workflow!";
+        emailDetails.subscribed = true;
+        emailDetails.count = 0;
 
-        while (emailDetails.isSubscribed()) {
+        while (emailDetails.subscribed) {
 
-            emailDetails.increment();
-            if (emailDetails.getCount() > 1) {
-                emailDetails.setMessage("Thank you for staying subscribed!");
+            emailDetails.count += 1;
+            if (emailDetails.count > 1) {
+                emailDetails.message = "Thank you for staying subscribed!";
             }
 
             try {
@@ -46,12 +46,11 @@ public class SendEmailWorkflowImpl implements SendEmailWorkflow {
                 Workflow.sleep(Duration.ofSeconds(duration));
             }
             catch (CanceledFailure e) {
-                emailDetails.setSubscribed(false);
-                emailDetails.setMessage("Sorry to see you go");
+                emailDetails.subscribed = false;
+                emailDetails.message = "Sorry to see you go";
                 CancellationScope sendGoodbye =
                         Workflow.newDetachedCancellationScope(() -> activities.sendEmail(emailDetails));
                 sendGoodbye.run();
-
                 throw e;
             }
         }

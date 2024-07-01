@@ -1,15 +1,15 @@
 // @@@SNIPSTART email-drip-campaign-java-send-email-message-data-class
 package subscription.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class Message {
+    public String message;
 
-    private String message;
+    public Message(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
 // @@@SNIPEND

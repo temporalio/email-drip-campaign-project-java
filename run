@@ -1,0 +1,75 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $(basename $0) {new|cancel|info} [email_address]"
+    echo "       $(basename $0) start // autogenerates email" 
+    echo "       $(basename $0) list  // shows subscription workflow emails"
+    echo "       $(basename $0) show  // shows all workflow info"
+    echo ""
+    echo "       sh ./gradlew bootRun        // run server"
+    echo "       sh ./gradlew test --info    // run tests"
+    exit 1
+}
+
+if [ "$1" == "list" ]; then
+    temporal workflow list \
+      --query='ExecutionStatus="Running" OR ExecutionStatus="Canceled"' | \
+      awk '{{print $2}}' | tail -n +2
+    exit
+fi
+
+if [ "$1" == "show" ]; then
+    temporal workflow list
+    exit
+fi
+
+if [ $# -lt 1 ] || ([ "$1" != "start" ] && [ $# -ne 2 ]); then 
+    usage
+fi
+
+command=$1
+email=$2
+
+if [ "$command" != "start" ] && \
+   [[ ! $email =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+    echo "Invalid email address."
+   exit 1
+fi
+
+base_url="http://localhost:8080"
+
+case $command in
+    new)
+        result=$(curl -s -X POST -H "Content-Type: application/json" \
+		-d "{\"email\": \"$email\"}" "$base_url/subscribe")
+        ;;
+    cancel)
+        result=$(curl -s -X DELETE -H "Content-Type: application/json" \
+		-d "{\"email\": \"$email\"}" "$base_url/unsubscribe")
+        ;;
+     info)
+        result=$(curl -s -X GET -H "Content-Type: application/json" \
+		"$base_url/get_details?email=$email")
+        if command -v jq > /dev/null 2>&1; then
+            echo "$result" | jq .
+        else
+            echo "$result"
+        fi
+        exit 0
+        ;;
+    start)
+        email="random$(date +%s)@example.com"
+        result=$(curl -s -X POST -H "Content-Type: application/json" \
+		-d "{\"email\": \"$email\"}" "$base_url/subscribe")
+        echo "Generated email: $email"
+        if command -v pbcopy > /dev/null 2>&1; then
+            echo -n "$email" | pbcopy
+        fi
+        ;;
+    *)
+        echo "Invalid command."
+        usage
+        ;;
+esac
+
+echo $result

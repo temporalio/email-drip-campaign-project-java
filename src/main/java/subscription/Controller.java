@@ -21,7 +21,6 @@ public class Controller {
 // @@@SNIPEND
 // @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-subscribe
     @PostMapping(value = "/subscribe", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public Message startSubscription(@RequestBody WorkflowData data) {
 
         WorkflowOptions options = WorkflowOptions.newBuilder()
@@ -38,7 +37,6 @@ public class Controller {
 
 // @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-details
     @GetMapping(value = "/get_details", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public EmailDetails getQuery(@RequestParam String email) {
 
         SendEmailWorkflow workflow = client.newWorkflowStub(SendEmailWorkflow.class, email);
@@ -48,7 +46,6 @@ public class Controller {
 
 // @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-unsubscribe
     @DeleteMapping(value = "/unsubscribe", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public Message endSubscription(@RequestBody WorkflowData data) {
 
         SendEmailWorkflow workflow = client.newWorkflowStub(SendEmailWorkflow.class, data.getEmail());

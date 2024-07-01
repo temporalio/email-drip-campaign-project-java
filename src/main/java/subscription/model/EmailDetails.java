@@ -1,13 +1,14 @@
 // @@@SNIPSTART email-drip-campaign-java-send-email-subscriber-details-data-class
 package subscription.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class EmailDetails {
     public String email;
     public String message;
     public int count;
     public boolean subscribed;
 
-    public EmailDetails() { }
+    public EmailDetails() {}
 
     public EmailDetails(String email, String message, int count, boolean subscribed) {
         this.email = email;

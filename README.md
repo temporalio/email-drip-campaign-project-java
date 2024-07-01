@@ -19,14 +19,40 @@ temporal server start-dev
 2. In second terminal, compile the project and start the Spring Boot application.
 ```bash
 gradle build
+```
+
+Or
+
+```bash
 ./gradlew bootRun
 ```
+
+If you get the `bash: ./gradlew: Permission denied` error, try:
+
+```
+sh ./gradlew bootRun
+``` 
 
 3. In a third terminal, run the curl commands below.
     -  Check your second terminal for subscription updates.
     -  Check `http://localhost:8233/` for the temporal web UI's workflow details.
+    
+## Test
+
+```
+./gradlew test --info
+```
+
+If you get the `bash: ./gradlew: Permission denied` error, try:
+
+```
+sh ./gradlew test --info
+``` 
 
 ## Curl commands
+
+These commands all assume you're using the Bash family of shells. 
+You may encounter issues when using csh/tcsh/etc.
 
 ### Subscribe
 

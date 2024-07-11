@@ -1,3 +1,4 @@
+// @@@SNIPSTART email-drip-campaign-java-send-email-subscription-workflow-implementation
 package subscription.workflows;
 
 import io.temporal.spring.boot.WorkflowImpl;
@@ -11,7 +12,6 @@ import io.temporal.workflow.Workflow;
 
 import java.time.Duration;
 
-// @@@SNIPSTART email-drip-campaign-java-send-email-subscription-workflow-implementation
 @WorkflowImpl(workers = "send-email-worker")
 public class SendEmailWorkflowImpl implements SendEmailWorkflow {
 

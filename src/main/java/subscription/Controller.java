@@ -9,9 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import subscription.model.*;
 import subscription.workflows.SendEmailWorkflow;
-// @@@SNIPEND
 
-// @@@SNIPSTART email-drip-campaign-java-send-email-constroller-for-services-responder
 @RestController
 public class Controller {
 

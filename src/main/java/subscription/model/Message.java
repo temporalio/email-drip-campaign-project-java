@@ -2,6 +2,7 @@
 package subscription.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 public class Message {
     public String message;
 
